@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+.dm-serif {
+  font-family: "DM Serif Text", serif;
+}
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+}
+
+/* tailwind.css */
+@layer utilities {
+  .grid-areas-layout {
+    grid-template-areas:
+      "a d"
+      "b e"
+      "c e";
+  }
+  .grid-area-a {
+    grid-area: a;
+  }
+  .grid-area-b {
+    grid-area: b;
+  }
+  .grid-area-c {
+    grid-area: c;
+  }
+  .grid-area-d {
+    grid-area: d;
+  }
+  .grid-area-e {
+    grid-area: e;
+  }
+}
+
+/* Hide scrollbar for Chrome, Edge, Safari */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+}
