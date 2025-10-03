@@ -3,16 +3,25 @@ import axios from "../services/api";
 
 export const saveRecipe = createAsyncThunk(
   "recipe/save",
-  async ({ title, recipe }) => {
-    const response = await axios.post(
-      "/api/recipe/saved",
-      {
-        title: title,
-        recipe: recipe,
-      },
-      { withCredentials: true }
-    );
-    return response.data;
+  async ({ title, recipe }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "/api/recipe/saved",
+        { title, recipe },
+        { withCredentials: true }
+      );
+      return response.data;
+    } catch (err) {
+      // Check if the server returned "Token not found"
+      if (
+        err.response?.status === 400 &&
+        err.response?.data?.message === "Token not found"
+      ) {
+        return rejectWithValue("You have to login first");
+      }
+      // For any other error
+      return rejectWithValue(err.response?.data?.message || err.message);
+    }
   }
 );
 
@@ -66,7 +75,7 @@ const recipeSlice = createSlice({
       })
       .addCase(saveRecipe.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload; // <-- This will be "You have to login first"
       })
       .addCase(saveRecipe.fulfilled, (state, action) => {
         state.loading = false;

@@ -8,13 +8,23 @@ import remarkGfm from "remark-gfm";
 import { toast } from "react-toastify";
 import { saveRecipe } from "../slices/recipeSlice";
 import { Loader2 } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const Generate = () => {
   const dispatch = useDispatch();
   const { recipe, recipeLoading, recipeError } = useSelector(
     (state) => state.recipe
   );
+  const { recipes, loading, error } = useSelector(
+    (state) => state.savedrecipes
+  );
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error); // This shows "You have to login first"
+      // console.log(error);
+    }
+  }, [error]);
 
   const recipeRef = useRef(null);
 
