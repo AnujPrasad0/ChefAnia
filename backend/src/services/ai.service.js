@@ -10,7 +10,7 @@ async function generateRecipe(content) {
     cooking_time,
     difficulty_level,
     meal_type,
-    language = "Hinglish",
+    language = "Hindi + English",
   } = content;
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
