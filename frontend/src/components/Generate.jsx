@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { toast } from "react-toastify";
 import { saveRecipe } from "../slices/recipeSlice";
+import { Loader2 } from "lucide-react";
 import { useRef } from "react";
 
 const Generate = () => {
@@ -166,12 +167,28 @@ const Generate = () => {
         </div>
 
         {recipeLoading ? (
-          <div className="text-white flex flex-col items-center justify-center p-8 gap-5">
-            <p className="text-3xl text-center">We are making your recipe</p>
-            <img className="w-15" src={loading} alt="" />
+          // <div className="text-white flex flex-col items-center justify-center p-8 gap-5">
+          //   <p className="text-3xl text-center">We are making your recipe</p>
+          //   <img className="w-15" src={loading} alt="" />
+          // </div>
+
+          <div className="flex flex-col items-center justify-center gap-6 py-10">
+            {/* Animated gradient circle */}
+            <div className="relative w-24 h-24">
+              <div className="absolute inset-0 rounded-full bg-linear-to-r from-[#b14c6c] to-[#66435b] animate-pulse"></div>
+              <Loader2 className="absolute inset-0 m-auto w-12 h-12 text-white animate-spin" />
+            </div>
+
+            {/* Text */}
+            <p className="dm-serif text-2xl sm:text-3xl text-white text-center">
+              Cooking up your recipe...
+            </p>
+            <p className="roboto text-lg sm:text-xl text-white opacity-80 text-center">
+              Give us a moment while Chefania mixes the ingredients ✨
+            </p>
           </div>
         ) : (
-          <div className="flex-1 bg-amber-50 w-full rounded-2xl roboto px-3 py-5 sm:p-5 text-md sm:text-xl text-black">
+          <div className="flex-1 bg-white w-full rounded-2xl roboto px-3 py-5 sm:p-5 text-md sm:text-xl text-black">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {recipe.recipe}
             </ReactMarkdown>

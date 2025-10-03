@@ -1,5 +1,7 @@
 import chefHat from "../assets/chefHat.webp";
 import food1 from "../assets/food1.png";
+import food2 from "../assets/food2.png";
+import food3 from "../assets/food3.png";
 import spoons from "../assets/spoons.png";
 import recipe1 from "../assets/recipe1.webp";
 import recipe2 from "../assets/recipe2.webp";
@@ -46,7 +48,7 @@ const Home = () => {
             </div>
             <img
               className="grid-area-c object-cover object-center w-full max-w-45 h-full rounded-full border-2"
-              src={food1}
+              src={food2}
               alt=""
             />
             <div className="grid-area-d flex items-center justify-center w-full max-w-45 h-full bg-[#401a31] rounded-full overflow-hidden">
@@ -54,7 +56,7 @@ const Home = () => {
             </div>
             <img
               className="grid-area-e object-cover object-center w-full max-w-45 h-full rounded-full border-2"
-              src={food1}
+              src={food3}
               alt=""
             />
           </div>

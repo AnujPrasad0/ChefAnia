@@ -5,6 +5,9 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { registerSW } from "virtual:pwa-register";
+
+registerSW();
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>

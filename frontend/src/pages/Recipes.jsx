@@ -102,4 +102,3 @@ const Recipes = () => {
 };
 
 export default Recipes;
-// [clamp(1rem,5vh,3rem)]

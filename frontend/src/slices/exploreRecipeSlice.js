@@ -4,15 +4,23 @@ import axios from "../services/api";
 export const setexploreRecipe = createAsyncThunk(
   "recipe/setexploreRecipe",
   async (id) => {
-    const response = await axios.post("/api/recipe/search/details", { id });
-    return response.data;
+    console.log(id);
+
+    try {
+      const response = await axios.get("/api/recipe/search/details", {
+        params: { id },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 
 const initialState = {
-  exploreRecipe: [],
-  recipeLoading: false,
-  recipeError: null,
+  recipe: [],
+  loading: false,
+  error: null,
 };
 
 const exploreRecipeSlice = createSlice({
@@ -21,16 +29,16 @@ const exploreRecipeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(setRecipe.pending, (state) => {
-        state.recipeLoading = true;
-        state.recipeError = null;
+      .addCase(setexploreRecipe.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
-      .addCase(setRecipe.rejected, (state, action) => {
-        state.recipeLoading = false;
-        state.recipeError = action.recipeError;
+      .addCase(setexploreRecipe.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
       })
-      .addCase(setRecipe.fulfilled, (state, action) => {
-        state.recipeLoading = false;
+      .addCase(setexploreRecipe.fulfilled, (state, action) => {
+        state.loading = false;
         state.recipe = action.payload;
       });
   },

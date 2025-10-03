@@ -136,7 +136,7 @@ async function getSearchRecipe(req, res) {
 
 async function getSearchRecipeDetails(req, res) {
   try {
-    const { id } = req.body;
+    const { id } = req.query;
     console.log(id);
     const response = await axios.get(
       `https://api.spoonacular.com/recipes/${id}/information`,

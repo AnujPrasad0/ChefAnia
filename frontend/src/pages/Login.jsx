@@ -4,9 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
 import axios from "../services/api";
+import { checkAuth } from "../slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -35,7 +38,8 @@ const Login = () => {
       )
       .then((res) => {
         toast.success(res.data.message);
-        navigate("/recipes");
+        dispatch(checkAuth());
+        navigate("/recipes/generate");
         reset();
       })
       .catch((err) => {
